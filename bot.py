@@ -20,5 +20,9 @@ while True:
     article_title = article['title']
     article_url = article['url']
     tweet_string = '"' + article_title + '" #Science #Gali #ScienceBot ' + article_url
-    bot.update_status(tweet_string)
+    # Prevents duplicate tweets from terminating program
+    try:
+      bot.update_status(tweet_string)
+    except tweepy.error.TweepError:
+      pass
     sleep(900)
